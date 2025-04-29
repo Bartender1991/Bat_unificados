@@ -102,6 +102,8 @@ rem #############################################
     ECHO.
     ECHO    15. UPDATE 32 W7                      16. Explorer Full 2.0
     echo.
+    ECHO    17. ACTIVAR PROXY                     18. DESACTIVAR PROXY
+    echo.
     echo  ------------------------------------------
     echo  e. Exit                          v. Volver                 
     echo.
@@ -125,6 +127,8 @@ rem #############################################
     if %op_usuario%==14 call :update_w7_64
     if %op_usuario%==15 call :update_w7_32
     if %op_usuario%==16 call :Explorer_Full_2_0
+    if %op_usuario%==17 call :ActProxy
+    if %op_usuario%==18 call :DesProxy
     goto :more_if
 
 
@@ -372,6 +376,8 @@ rem : menu_principal
         call :act_num primerInicio
         echo.
         call :cuentas_de_usuario
+        echo.
+        call :ActProxy
         echo.
         set subRutina=true
         echo.
@@ -1123,6 +1129,21 @@ rem : menu_windows
         set subRutina=true
         goto :eof
 
+    :ActProxy
+        echo.
+        call :formato "ACTIVAR PROXY"
+        reg add "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Internet Settings" /v AutoConfigURL /t REG_SZ /d "http://proxy.hospitalitaliano.net/proxy.pac" /f
+        :: reg add "HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Internet Settings" /v AutoConfigURL /t REG_SZ /d "http://proxy.hospitalitaliano.net/proxy.pac" /f
+        set subRutina=true
+        goto :eof
+    
+    :DesProxy
+        echo.
+        call :formato "DESACTIVAR PROXY"
+        reg delete "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Internet Settings" /v AutoConfigURL /f
+        set subRutina=true
+        goto :eof
+
     :del_temp
         call :formato " BORRAR TEMPORALES  "
         echo.
@@ -1648,6 +1669,7 @@ rem                                                 ############################
         if %%a==caracter (set caracter=%%b)
         if %%a==ActulizarURL (set ActulizarURL=%%b)
         if %%a==Sv (set Sv=%%b)
+        if %%a==UpD (set UpD=%%b)
         )
     goto :eof
 
@@ -1754,7 +1776,7 @@ rem                                                 ############################
     echo      `''^)----^(''` ^|____^|         #   Modelo      :   %ModelPC%
     echo     /::::::::::::\^"  \ ^"         #
     echo    /:::========:::\   \          #
-    echo   /''''''''''''''''\  '-'        #
+    echo   /''''''''''''''''\  '-'        # Update : %UpD%
     echo.
     echo  #########################################
     echo.
