@@ -1,8 +1,8 @@
 uc:taller taller2017
 actualizar:true
-version:2023-4.0
+version:2025.04-29/4/2025
 desarrollo:Bartender
 caracter:-
 ActulizarURL:\taller\Bat\Bats_unificados
 Sv:\\193.4.0.180
-UpD:"Se agrego configuracion de Proxy"
+UpD:"Se agrego configuracion de Proxy y activacion de C$"

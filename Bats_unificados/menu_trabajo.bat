@@ -86,24 +86,25 @@ rem #############################################
     cls
     call :imagen %actual%
     echo.
-    ECHO    1. OPCIONES DE ENERGIA                 2. HABILITAR PING
-    ECHO.
-    ECHO    3. HABILITAR BLOQ NUM                  4. ACTIVAR ESCRITORIO REMOTO
-    ECHO.
-    ECHO    5. BORRAR TEMPORALES                   6. RAIMVIEWER MENU
-    ECHO.
-    ECHO    7. DESBLOQUEAR ESCRITORIO              8. BLOQUEAR ESCRITORIO
-    ECHO.
-    ECHO    9. CAMBIAR LA HORA                    10. CAMBIAR LA FECHA
-    ECHO.
-    ECHO    11. CAMBIAR NOMBRE DE EQUIPO          12. CAMBIAR DESCRIPCION
-    ECHO.
-    ECHO    13. CAMBIAR CONTRASENA                14. UPDATE 64 W7 
-    ECHO.
-    ECHO    15. UPDATE 32 W7                      16. Explorer Full 2.0
+    echo    1. OPCIONES DE ENERGIA                 2. HABILITAR PING
     echo.
-    ECHO    17. ACTIVAR PROXY                     18. DESACTIVAR PROXY
+    echo    3. HABILITAR BLOQ NUM                  4. ACTIVAR ESCRITORIO REMOTO
     echo.
+    echo    5. BORRAR TEMPORALES                   6. RAIMVIEWER MENU
+    echo.
+    echo    7. DESBLOQUEAR ESCRITORIO              8. BLOQUEAR ESCRITORIO
+    echo.
+    echo    9. CAMBIAR LA HORA                    10. CAMBIAR LA FECHA
+    echo.
+    echo    11. CAMBIAR NOMBRE DE EQUIPO          12. CAMBIAR DESCRIPCION
+    echo.
+    echo    13. CAMBIAR CONTRASENA                14. UPDATE 64 W7 
+    echo.
+    echo    15. UPDATE 32 W7                      16. Explorer Full 2.0
+    echo.
+    echo    17. ACTIVAR PROXY                     18. DESACTIVAR PROXY
+    echo.
+    echo    19. ACTIVAR C$
     echo  ------------------------------------------
     echo  e. Exit                          v. Volver                 
     echo.
@@ -126,9 +127,10 @@ rem #############################################
     if %op_usuario%==13 call :set_pass_admin
     if %op_usuario%==14 call :update_w7_64
     if %op_usuario%==15 call :update_w7_32
-    if %op_usuario%==16 call :Explorer_Full_2_0
+    if %op_usuario%==16 call :Explorer
     if %op_usuario%==17 call :ActProxy
     if %op_usuario%==18 call :DesProxy
+    if %op_usuario%==19 call :activarCpesos
     goto :more_if
 
 
@@ -277,10 +279,10 @@ rem                                                 ############################
     call :imagen %actual%
     echo.
     echo.
-    ECHO    1. MONITOR PRINCIPAL                   2. MONITOR SECUNDARIO
-    ECHO.
-    ECHO    3. MONITOR DUPLICADO                   4. MONITOR EXTENDIDO
-    ECHO.
+    echo    1. MONITOR PRINCIPAL                   2. MONITOR SECUNDARIO
+    echo.
+    echo    3. MONITOR DUPLICADO                   4. MONITOR EXTENDIDO
+    echo.
     echo  ------------------------------------------
     echo  e. Exit                          v. Volver                 
     echo.
@@ -317,10 +319,10 @@ rem                                                 ############################
     call :imagen %actual%
     echo.
     echo.
-    ECHO    1. INSTALAR                   2. BORRAR
-    ECHO.
-    ECHO    3. ABRIR LINK DE PRUEBA 
-    ECHO.
+    echo    1. INSTALAR                   2. BORRAR
+    echo.
+    echo    3. ABRIR LINK DE PRUEBA 
+    echo.
     echo  ------------------------------------------
     echo  e. Exit                          v. Volver                 
     echo.
@@ -378,6 +380,8 @@ rem : menu_principal
         call :cuentas_de_usuario
         echo.
         call :ActProxy
+        echo.
+        call :activarCpesos
         echo.
         set subRutina=true
         echo.
@@ -510,585 +514,6 @@ rem : menu_impresora
         goto :eof
 
 rem : menu_windows
-    :Explorer_Full_2_0
-        echo.
-        call :formato "Explorer Full 2.0"
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings" /v "CertificateRevocation" /t REG_DWORD /d "1" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings" /v "DisableCachingOfSSLPages" /t REG_DWORD /d "0" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings" /v "IE5_UA_Backup_Flag" /t REG_SZ /d "5.0" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings" /v "PrivacyAdvanced" /t REG_DWORD /d "1" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings" /v "SecureProtocols" /t REG_DWORD /d "2720" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings" /v "User Agent" /t REG_SZ /d "Mozilla/4.0 (compatible; MSIE 8.0; Win32)" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings" /v "ZonesSecurityUpgrade" /t REG_BINARY /d "86c4dd8499c2d701" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings" /v "EnableNegotiate" /t REG_DWORD /d "1" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings" /v "ProxyEnable" /t REG_DWORD /d "0" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings" /v "MigrateProxy" /t REG_DWORD /d "1" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings" /v "WarnonZoneCrossing" /t REG_DWORD /d "0" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings" /v "AutoConfigURL" /t REG_SZ /d "http://proxy.hospitalitaliano.net/proxy.pac" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings" /v "EnableHttp1_1" /t REG_DWORD /d "1" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings" /v "ProxyHttp1.1" /t REG_DWORD /d "1" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings" /v "EnableHTTP2" /t REG_DWORD /d "1" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings" /v "EnablePunycode" /t REG_DWORD /d "1" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings" /v "UrlEncoding" /t REG_DWORD /d "0" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings" /v "DisableIDNPrompt" /t REG_DWORD /d "0" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings" /v "ShowPunycode" /t REG_DWORD /d "0" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings" /v "WarnOnPostRedirect" /t REG_DWORD /d "1" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings" /v "WarnonBadCertRecving" /t REG_DWORD /d "1" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\5.0\Cache" /v "ContentLimit" /t REG_DWORD /d "330" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\5.0\Cache" /v "TotalContentLimit" /t REG_DWORD /d "495" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\5.0\Cache" /v "AppContainerTotalContentLimit" /t REG_DWORD /d "1000" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\5.0\Cache" /v "AppContainerContentLimit" /t REG_DWORD /d "50" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\5.0\Cache" /v "Version" /t REG_DWORD /d "4" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\5.0\Cache\Content" /v "CachePrefix" /t REG_SZ /d "" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\5.0\Cache\Content" /v "CacheVersion" /t REG_DWORD /d "1" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\5.0\Cache\Content" /v "CacheLimit" /t REG_DWORD /d "337920" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\5.0\Cache\Cookies" /v "CachePrefix" /t REG_SZ /d "Cookie:" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\5.0\Cache\Cookies" /v "CacheVersion" /t REG_DWORD /d "1" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\5.0\Cache\Cookies" /v "CacheLimit" /t REG_DWORD /d "1" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\5.0\Cache\Extensible Cache\DNTException" /v "CachePrefix" /t REG_SZ /d "DNTException:" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\5.0\Cache\Extensible Cache\DNTException" /v "CachePath" /t REG_SZ /d "C:\Users\Administrador\AppData\Local\Microsoft\Windows\INetCookies\DNTException" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\5.0\Cache\Extensible Cache\DNTException" /v "CacheRelativePath" /t REG_SZ /d "Microsoft\Windows\INetCookies\DNTException" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\5.0\Cache\Extensible Cache\DNTException" /v "CacheOptions" /t REG_DWORD /d "768" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\5.0\Cache\Extensible Cache\DNTException" /v "CacheRepair" /t REG_DWORD /d "0" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\5.0\Cache\Extensible Cache\DNTException" /v "CacheLimit" /t REG_DWORD /d "1" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\5.0\Cache\Extensible Cache\DOMStore" /v "CachePrefix" /t REG_SZ /d "DOMStore" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\5.0\Cache\Extensible Cache\DOMStore" /v "CachePath" /t REG_SZ /d "C:\Users\Administrador\AppData\Local\Microsoft\Internet Explorer\DOMStore" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\5.0\Cache\Extensible Cache\DOMStore" /v "CacheRelativePath" /t REG_SZ /d "Microsoft\Internet Explorer\DOMStore" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\5.0\Cache\Extensible Cache\DOMStore" /v "CacheOptions" /t REG_DWORD /d "8" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\5.0\Cache\Extensible Cache\DOMStore" /v "CacheRepair" /t REG_DWORD /d "0" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\5.0\Cache\Extensible Cache\DOMStore" /v "CacheLimit" /t REG_DWORD /d "1000" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\5.0\Cache\Extensible Cache\EmieSiteList" /v "CachePrefix" /t REG_SZ /d "EmieSiteList:" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\5.0\Cache\Extensible Cache\EmieSiteList" /v "CachePath" /t REG_SZ /d "C:\Users\Administrador\AppData\Local\Microsoft\Internet Explorer\EmieSiteList" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\5.0\Cache\Extensible Cache\EmieSiteList" /v "CacheRelativePath" /t REG_SZ /d "Microsoft\Internet Explorer\EmieSiteList" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\5.0\Cache\Extensible Cache\EmieSiteList" /v "CacheOptions" /t REG_DWORD /d "768" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\5.0\Cache\Extensible Cache\EmieSiteList" /v "CacheRepair" /t REG_DWORD /d "0" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\5.0\Cache\Extensible Cache\EmieSiteList" /v "CacheLimit" /t REG_DWORD /d "1" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\5.0\Cache\Extensible Cache\EmieUserList" /v "CachePrefix" /t REG_SZ /d "EmieUserList:" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\5.0\Cache\Extensible Cache\EmieUserList" /v "CachePath" /t REG_SZ /d "C:\Users\Administrador\AppData\Local\Microsoft\Internet Explorer\EmieUserList" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\5.0\Cache\Extensible Cache\EmieUserList" /v "CacheRelativePath" /t REG_SZ /d "Microsoft\Internet Explorer\EmieUserList" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\5.0\Cache\Extensible Cache\EmieUserList" /v "CacheOptions" /t REG_DWORD /d "768" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\5.0\Cache\Extensible Cache\EmieUserList" /v "CacheRepair" /t REG_DWORD /d "0" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\5.0\Cache\Extensible Cache\EmieUserList" /v "CacheLimit" /t REG_DWORD /d "1" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\5.0\Cache\Extensible Cache\feedplat" /v "CachePrefix" /t REG_SZ /d "feedplat:" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\5.0\Cache\Extensible Cache\feedplat" /v "CachePath" /t REG_SZ /d "C:\Users\Administrador\AppData\Local\Microsoft\Feeds Cache" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\5.0\Cache\Extensible Cache\feedplat" /v "CacheRelativePath" /t REG_SZ /d "Microsoft\Feeds Cache" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\5.0\Cache\Extensible Cache\feedplat" /v "CacheOptions" /t REG_DWORD /d "0" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\5.0\Cache\Extensible Cache\feedplat" /v "CacheRepair" /t REG_DWORD /d "0" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\5.0\Cache\Extensible Cache\feedplat" /v "CacheLimit" /t REG_DWORD /d "1" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\5.0\Cache\Extensible Cache\iecompat" /v "CachePrefix" /t REG_SZ /d "iecompat:" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\5.0\Cache\Extensible Cache\iecompat" /v "CachePath" /t REG_SZ /d "C:\Users\Administrador\AppData\Local\Microsoft\Windows\IECompatCache" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\5.0\Cache\Extensible Cache\iecompat" /v "CacheRelativePath" /t REG_SZ /d "Microsoft\Windows\IECompatCache" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\5.0\Cache\Extensible Cache\iecompat" /v "CacheOptions" /t REG_DWORD /d "777" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\5.0\Cache\Extensible Cache\iecompat" /v "CacheRepair" /t REG_DWORD /d "0" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\5.0\Cache\Extensible Cache\iecompat" /v "CacheLimit" /t REG_DWORD /d "1" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\5.0\Cache\Extensible Cache\iecompatua" /v "CachePrefix" /t REG_SZ /d "iecompatua:" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\5.0\Cache\Extensible Cache\iecompatua" /v "CachePath" /t REG_SZ /d "C:\Users\Administrador\AppData\Local\Microsoft\Windows\IECompatUaCache" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\5.0\Cache\Extensible Cache\iecompatua" /v "CacheRelativePath" /t REG_SZ /d "Microsoft\Windows\IECompatUaCache" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\5.0\Cache\Extensible Cache\iecompatua" /v "CacheOptions" /t REG_DWORD /d "777" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\5.0\Cache\Extensible Cache\iecompatua" /v "CacheRepair" /t REG_DWORD /d "0" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\5.0\Cache\Extensible Cache\iecompatua" /v "CacheLimit" /t REG_DWORD /d "1" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\5.0\Cache\Extensible Cache\iedownload" /v "CachePrefix" /t REG_SZ /d "iedownload:" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\5.0\Cache\Extensible Cache\iedownload" /v "CachePath" /t REG_SZ /d "C:\Users\Administrador\AppData\Local\Microsoft\Windows\IEDownloadHistory" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\5.0\Cache\Extensible Cache\iedownload" /v "CacheRelativePath" /t REG_SZ /d "Microsoft\Windows\IEDownloadHistory" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\5.0\Cache\Extensible Cache\iedownload" /v "CacheOptions" /t REG_DWORD /d "9" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\5.0\Cache\Extensible Cache\iedownload" /v "CacheRepair" /t REG_DWORD /d "0" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\5.0\Cache\Extensible Cache\iedownload" /v "CacheLimit" /t REG_DWORD /d "1" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\5.0\Cache\Extensible Cache\IEToEdgeList" /v "CachePrefix" /t REG_SZ /d "IEToEdgeList:" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\5.0\Cache\Extensible Cache\IEToEdgeList" /v "CachePath" /t REG_SZ /d "C:\Users\Administrador\AppData\Local\Microsoft\EdgeBho\IEToEdge" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\5.0\Cache\Extensible Cache\IEToEdgeList" /v "CacheRelativePath" /t REG_SZ /d "Microsoft\EdgeBho\IEToEdge" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\5.0\Cache\Extensible Cache\IEToEdgeList" /v "CacheOptions" /t REG_DWORD /d "768" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\5.0\Cache\Extensible Cache\IEToEdgeList" /v "CacheRepair" /t REG_DWORD /d "0" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\5.0\Cache\Extensible Cache\IEToEdgeList" /v "CacheLimit" /t REG_DWORD /d "1" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\5.0\Cache\Extensible Cache\MSHist012021120920211210" /v "CachePrefix" /t REG_SZ /d ":2021120920211210: " /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\5.0\Cache\Extensible Cache\MSHist012021120920211210" /v "CachePath" /t REG_SZ /d "C:\Users\Administrador\AppData\Local\Microsoft\Windows\History\History.IE5\MSHist012021120920211210" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\5.0\Cache\Extensible Cache\MSHist012021120920211210" /v "CacheRelativePath" /t REG_SZ /d "Microsoft\Windows\History\History.IE5\MSHist012021120920211210" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\5.0\Cache\Extensible Cache\MSHist012021120920211210" /v "CacheOptions" /t REG_DWORD /d "11" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\5.0\Cache\Extensible Cache\MSHist012021120920211210" /v "CacheRepair" /t REG_DWORD /d "0" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\5.0\Cache\Extensible Cache\MSHist012021120920211210" /v "CacheLimit" /t REG_DWORD /d "1" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\5.0\Cache\History" /v "CachePrefix" /t REG_SZ /d "Visited:" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\5.0\Cache\History" /v "CacheVersion" /t REG_DWORD /d "1" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\5.0\Cache\History" /v "CacheLimit" /t REG_DWORD /d "1" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\5.0\LowCache" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\5.0\User Agent\Post Platform" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Cache" /v "Persistent" /t REG_DWORD /d "1" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Connections" /v "SavedLegacySettings" /t REG_BINARY /d "460000000c0000000500000000000000000000002b000000687474703a2f2f70726f78792e686f73706974616c6974616c69616e6f2e6e65742f70726f78792e7061630000000000000000000000000000000000000000000000000000000000000000" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Connections" /v "DefaultConnectionSettings" /t REG_BINARY /d "460000000c0000000500000000000000000000002b000000687474703a2f2f70726f78792e686f73706974616c6974616c69616e6f2e6e65742f70726f78792e7061630000000000000000000000000000000000000000000000000000000000000000" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Http Filters\RPA" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Lockdown_Zones\0" /ve /t REG_SZ /d "" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Lockdown_Zones\0" /v "DisplayName" /t REG_SZ /d "Computer" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Lockdown_Zones\0" /v "PMDisplayName" /t REG_SZ /d "Computer [Protected Mode]" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Lockdown_Zones\0" /v "Description" /t REG_SZ /d "Your computer" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Lockdown_Zones\0" /v "Icon" /t REG_SZ /d "shell32.dll#0016" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Lockdown_Zones\0" /v "LowIcon" /t REG_SZ /d "inetcpl.cpl#005422" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Lockdown_Zones\0" /v "CurrentLevel" /t REG_DWORD /d "0" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Lockdown_Zones\0" /v "Flags" /t REG_DWORD /d "33" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Lockdown_Zones\0" /v "1200" /t REG_DWORD /d "3" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Lockdown_Zones\0" /v "1400" /t REG_DWORD /d "1" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Lockdown_Zones\1" /ve /t REG_SZ /d "" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Lockdown_Zones\1" /v "DisplayName" /t REG_SZ /d "Local intranet" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Lockdown_Zones\1" /v "PMDisplayName" /t REG_SZ /d "Local intranet [Protected Mode]" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Lockdown_Zones\1" /v "Description" /t REG_SZ /d "This zone contains all Web sites that are on your organization's intranet." /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Lockdown_Zones\1" /v "Icon" /t REG_SZ /d "shell32.dll#0018" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Lockdown_Zones\1" /v "LowIcon" /t REG_SZ /d "inetcpl.cpl#005423" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Lockdown_Zones\1" /v "CurrentLevel" /t REG_DWORD /d "0" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Lockdown_Zones\1" /v "Flags" /t REG_DWORD /d "219" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Lockdown_Zones\1" /v "1200" /t REG_DWORD /d "3" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Lockdown_Zones\1" /v "1400" /t REG_DWORD /d "1" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Lockdown_Zones\2" /ve /t REG_SZ /d "" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Lockdown_Zones\2" /v "DisplayName" /t REG_SZ /d "Trusted sites" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Lockdown_Zones\2" /v "PMDisplayName" /t REG_SZ /d "Trusted sites [Protected Mode]" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Lockdown_Zones\2" /v "Description" /t REG_SZ /d "This zone contains Web sites that you trust not to damage your computer or data." /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Lockdown_Zones\2" /v "Icon" /t REG_SZ /d "inetcpl.cpl#00004480" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Lockdown_Zones\2" /v "LowIcon" /t REG_SZ /d "inetcpl.cpl#005424" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Lockdown_Zones\2" /v "CurrentLevel" /t REG_DWORD /d "0" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Lockdown_Zones\2" /v "Flags" /t REG_DWORD /d "33" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Lockdown_Zones\2" /v "1200" /t REG_DWORD /d "3" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Lockdown_Zones\2" /v "1400" /t REG_DWORD /d "1" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Lockdown_Zones\3" /ve /t REG_SZ /d "" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Lockdown_Zones\3" /v "DisplayName" /t REG_SZ /d "Internet" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Lockdown_Zones\3" /v "PMDisplayName" /t REG_SZ /d "Internet [Protected Mode]" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Lockdown_Zones\3" /v "Description" /t REG_SZ /d "This zone contains all Web sites you haven't placed in other zones" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Lockdown_Zones\3" /v "Icon" /t REG_SZ /d "inetcpl.cpl#001313" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Lockdown_Zones\3" /v "LowIcon" /t REG_SZ /d "inetcpl.cpl#005425" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Lockdown_Zones\3" /v "CurrentLevel" /t REG_DWORD /d "0" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Lockdown_Zones\3" /v "Flags" /t REG_DWORD /d "33" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Lockdown_Zones\3" /v "1200" /t REG_DWORD /d "3" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Lockdown_Zones\3" /v "1400" /t REG_DWORD /d "1" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Lockdown_Zones\4" /ve /t REG_SZ /d "" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Lockdown_Zones\4" /v "DisplayName" /t REG_SZ /d "Restricted sites" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Lockdown_Zones\4" /v "PMDisplayName" /t REG_SZ /d "Restricted sites [Protected Mode]" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Lockdown_Zones\4" /v "Description" /t REG_SZ /d "This zone contains Web sites that could potentially damage your computer or data." /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Lockdown_Zones\4" /v "Icon" /t REG_SZ /d "inetcpl.cpl#00004481" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Lockdown_Zones\4" /v "LowIcon" /t REG_SZ /d "inetcpl.cpl#005426" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Lockdown_Zones\4" /v "CurrentLevel" /t REG_DWORD /d "0" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Lockdown_Zones\4" /v "Flags" /t REG_DWORD /d "33" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Lockdown_Zones\4" /v "1200" /t REG_DWORD /d "3" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Lockdown_Zones\4" /v "1400" /t REG_DWORD /d "3" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\P3P\History" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Passport\LowDAMap" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Wpad" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\ZoneMap" /ve /t REG_SZ /d "" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\ZoneMap" /v "ProxyByPass" /t REG_DWORD /d "1" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\ZoneMap" /v "IntranetName" /t REG_DWORD /d "1" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\ZoneMap" /v "UNCAsIntranet" /t REG_DWORD /d "1" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\ZoneMap" /v "AutoDetect" /t REG_DWORD /d "0" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\ZoneMap\Domains" /ve /t REG_SZ /d "" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\ZoneMap\Domains\hospitalitaliano.net" /v "*" /t REG_DWORD /d "2" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\ZoneMap\ProtocolDefaults" /ve /t REG_SZ /d "" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\ZoneMap\ProtocolDefaults" /v "http" /t REG_DWORD /d "3" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\ZoneMap\ProtocolDefaults" /v "https" /t REG_DWORD /d "3" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\ZoneMap\ProtocolDefaults" /v "ftp" /t REG_DWORD /d "3" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\ZoneMap\ProtocolDefaults" /v "file" /t REG_DWORD /d "3" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\ZoneMap\ProtocolDefaults" /v "@ivt" /t REG_DWORD /d "1" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\ZoneMap\ProtocolDefaults" /v "shell" /t REG_DWORD /d "0" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\ZoneMap\ProtocolDefaults" /v "knownfolder" /t REG_DWORD /d "0" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\ZoneMap\Ranges" /ve /t REG_SZ /d "" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones" /ve /t REG_SZ /d "" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones" /v "SelfHealCount" /t REG_DWORD /d "1" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones" /v "SecuritySafe" /t REG_DWORD /d "1" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\0" /ve /t REG_SZ /d "" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\0" /v "DisplayName" /t REG_SZ /d "Computer" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\0" /v "PMDisplayName" /t REG_SZ /d "Computer [Protected Mode]" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\0" /v "Description" /t REG_SZ /d "Your computer" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\0" /v "Icon" /t REG_SZ /d "shell32.dll#0016" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\0" /v "LowIcon" /t REG_SZ /d "inetcpl.cpl#005422" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\0" /v "CurrentLevel" /t REG_DWORD /d "0" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\0" /v "Flags" /t REG_DWORD /d "33" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\0" /v "1200" /t REG_DWORD /d "0" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\0" /v "1400" /t REG_DWORD /d "0" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\0" /v "2001" /t REG_DWORD /d "3" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\0" /v "2004" /t REG_DWORD /d "3" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\1" /ve /t REG_SZ /d "" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\1" /v "DisplayName" /t REG_SZ /d "Intranet local" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\1" /v "PMDisplayName" /t REG_SZ /d "Local intranet [Protected Mode]" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\1" /v "Description" /t REG_SZ /d "Esta zona contiene todos los sitios web que se encuentran en la intranet de su organización." /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\1" /v "Icon" /t REG_SZ /d "shell32.dll#0018" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\1" /v "LowIcon" /t REG_SZ /d "inetcpl.cpl#005423" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\1" /v "CurrentLevel" /t REG_DWORD /d "0" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\1" /v "Flags" /t REG_DWORD /d "219" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\1" /v "1200" /t REG_DWORD /d "0" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\1" /v "1400" /t REG_DWORD /d "0" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\1" /v "2500" /t REG_DWORD /d "3" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\1" /v "2001" /t REG_DWORD /d "0" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\1" /v "2004" /t REG_DWORD /d "0" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\1" /v "2707" /t REG_DWORD /d "0" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\1" /v "2400" /t REG_DWORD /d "0" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\1" /v "2401" /t REG_DWORD /d "0" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\1" /v "2402" /t REG_DWORD /d "0" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\1" /v "1A00" /t REG_DWORD /d "131072" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\1" /v "1402" /t REG_DWORD /d "0" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\1" /v "1409" /t REG_DWORD /d "3" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\1" /v "2103" /t REG_DWORD /d "0" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\1" /v "1407" /t REG_DWORD /d "0" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\1" /v "2105" /t REG_DWORD /d "0" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\1" /v "2007" /t REG_DWORD /d "65536" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\1" /v "2000" /t REG_DWORD /d "0" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\1" /v "1001" /t REG_DWORD /d "0" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\1" /v "1004" /t REG_DWORD /d "0" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\1" /v "270C" /t REG_DWORD /d "0" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\1" /v "1405" /t REG_DWORD /d "0" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\1" /v "1201" /t REG_DWORD /d "0" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\1" /v "120A" /t REG_DWORD /d "0" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\1" /v "2201" /t REG_DWORD /d "0" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\1" /v "2702" /t REG_DWORD /d "0" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\1" /v "120B" /t REG_DWORD /d "3" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\1" /v "1208" /t REG_DWORD /d "0" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\1" /v "1209" /t REG_DWORD /d "0" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\1" /v "1803" /t REG_DWORD /d "0" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\1" /v "1604" /t REG_DWORD /d "0" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\1" /v "2600" /t REG_DWORD /d "0" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\1" /v "1802" /t REG_DWORD /d "0" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\1" /v "1806" /t REG_DWORD /d "0" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\1" /v "1804" /t REG_DWORD /d "0" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\1" /v "1601" /t REG_DWORD /d "0" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\1" /v "2100" /t REG_DWORD /d "0" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\1" /v "160A" /t REG_DWORD /d "0" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\1" /v "2101" /t REG_DWORD /d "0" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\1" /v "1609" /t REG_DWORD /d "0" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\1" /v "1607" /t REG_DWORD /d "0" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\1" /v "1A04" /t REG_DWORD /d "0" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\1" /v "2300" /t REG_DWORD /d "0" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\1" /v "2708" /t REG_DWORD /d "0" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\1" /v "2709" /t REG_DWORD /d "0" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\1" /v "120C" /t REG_DWORD /d "0" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\1" /v "1206" /t REG_DWORD /d "0" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\1" /v "1608" /t REG_DWORD /d "0" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\1" /v "2104" /t REG_DWORD /d "0" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\1" /v "2102" /t REG_DWORD /d "0" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\1" /v "1606" /t REG_DWORD /d "0" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\1" /v "270B" /t REG_DWORD /d "0" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\1" /v "1406" /t REG_DWORD /d "0" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\1" /v "1809" /t REG_DWORD /d "3" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\1" /v "2301" /t REG_DWORD /d "3" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\2" /ve /t REG_SZ /d "" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\2" /v "DisplayName" /t REG_SZ /d "Sitios de confianza" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\2" /v "PMDisplayName" /t REG_SZ /d "Trusted sites [Protected Mode]" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\2" /v "Description" /t REG_SZ /d "Esta zona contiene sitios web que sabe no van a perjudicar el equipo o su información." /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\2" /v "Icon" /t REG_SZ /d "inetcpl.cpl#00004480" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\2" /v "LowIcon" /t REG_SZ /d "inetcpl.cpl#005424" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\2" /v "CurrentLevel" /t REG_DWORD /d "0" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\2" /v "Flags" /t REG_DWORD /d "67" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\2" /v "1200" /t REG_DWORD /d "0" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\2" /v "1400" /t REG_DWORD /d "0" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\2" /v "2001" /t REG_DWORD /d "0" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\2" /v "2004" /t REG_DWORD /d "0" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\2" /v "1001" /t REG_DWORD /d "0" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\2" /v "1004" /t REG_DWORD /d "0" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\2" /v "1201" /t REG_DWORD /d "0" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\2" /v "1206" /t REG_DWORD /d "0" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\2" /v "1207" /t REG_DWORD /d "0" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\2" /v "1208" /t REG_DWORD /d "0" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\2" /v "1209" /t REG_DWORD /d "0" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\2" /v "120A" /t REG_DWORD /d "0" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\2" /v "120C" /t REG_DWORD /d "0" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\2" /v "1402" /t REG_DWORD /d "0" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\2" /v "1405" /t REG_DWORD /d "0" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\2" /v "1406" /t REG_DWORD /d "0" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\2" /v "1407" /t REG_DWORD /d "1" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\2" /v "1408" /t REG_DWORD /d "0" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\2" /v "1409" /t REG_DWORD /d "0" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\2" /v "140A" /t REG_DWORD /d "0" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\2" /v "140C" /t REG_DWORD /d "0" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\2" /v "1601" /t REG_DWORD /d "0" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\2" /v "1604" /t REG_DWORD /d "0" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\2" /v "1605" /t REG_DWORD /d "0" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\2" /v "1606" /t REG_DWORD /d "0" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\2" /v "1607" /t REG_DWORD /d "0" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\2" /v "1608" /t REG_DWORD /d "0" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\2" /v "1609" /t REG_DWORD /d "0" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\2" /v "160A" /t REG_DWORD /d "0" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\2" /v "160B" /t REG_DWORD /d "0" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\2" /v "1802" /t REG_DWORD /d "0" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\2" /v "1803" /t REG_DWORD /d "0" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\2" /v "1804" /t REG_DWORD /d "0" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\2" /v "1809" /t REG_DWORD /d "3" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\2" /v "1812" /t REG_DWORD /d "0" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\2" /v "1A00" /t REG_DWORD /d "131072" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\2" /v "1A02" /t REG_DWORD /d "0" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\2" /v "1A03" /t REG_DWORD /d "0" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\2" /v "1A04" /t REG_DWORD /d "0" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\2" /v "1A05" /t REG_DWORD /d "1" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\2" /v "1A06" /t REG_DWORD /d "0" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\2" /v "1A10" /t REG_DWORD /d "1" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\2" /v "1C00" /t REG_DWORD /d "65536" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\2" /v "2000" /t REG_DWORD /d "0" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\2" /v "2005" /t REG_DWORD /d "0" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\2" /v "2007" /t REG_DWORD /d "65536" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\2" /v "2100" /t REG_DWORD /d "0" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\2" /v "2101" /t REG_DWORD /d "0" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\2" /v "2102" /t REG_DWORD /d "0" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\2" /v "2103" /t REG_DWORD /d "0" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\2" /v "2104" /t REG_DWORD /d "0" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\2" /v "2105" /t REG_DWORD /d "0" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\2" /v "2106" /t REG_DWORD /d "0" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\2" /v "2107" /t REG_DWORD /d "0" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\2" /v "2108" /t REG_DWORD /d "3" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\2" /v "2200" /t REG_DWORD /d "3" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\2" /v "2201" /t REG_DWORD /d "0" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\2" /v "2300" /t REG_DWORD /d "0" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\2" /v "2301" /t REG_DWORD /d "0" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\2" /v "2302" /t REG_DWORD /d "3" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\2" /v "2400" /t REG_DWORD /d "0" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\2" /v "2401" /t REG_DWORD /d "0" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\2" /v "2402" /t REG_DWORD /d "0" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\2" /v "2600" /t REG_DWORD /d "0" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\2" /v "2700" /t REG_DWORD /d "3" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\2" /v "2701" /t REG_DWORD /d "0" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\2" /v "2702" /t REG_DWORD /d "0" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\2" /v "2703" /t REG_DWORD /d "0" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\2" /v "2704" /t REG_DWORD /d "0" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\2" /v "2708" /t REG_DWORD /d "0" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\2" /v "2709" /t REG_DWORD /d "0" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\2" /v "270B" /t REG_DWORD /d "0" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\2" /v "270C" /t REG_DWORD /d "0" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\2" /v "270D" /t REG_DWORD /d "0" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\2" /v "140D" /t REG_DWORD /d "0" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\2" /v "1806" /t REG_DWORD /d "0" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\2" /v "2500" /t REG_DWORD /d "3" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\2" /v "2707" /t REG_DWORD /d "0" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\2" /v "120B" /t REG_DWORD /d "3" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\3" /ve /t REG_SZ /d "" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\3" /v "DisplayName" /t REG_SZ /d "Internet" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\3" /v "PMDisplayName" /t REG_SZ /d "Internet [Protected Mode]" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\3" /v "Description" /t REG_SZ /d "Esta zona contiene todos los sitios web que no situó en otras zonas" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\3" /v "Icon" /t REG_SZ /d "inetcpl.cpl#001313" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\3" /v "LowIcon" /t REG_SZ /d "inetcpl.cpl#005425" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\3" /v "CurrentLevel" /t REG_DWORD /d "70912" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\3" /v "Flags" /t REG_DWORD /d "1" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\3" /v "1200" /t REG_DWORD /d "0" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\3" /v "1400" /t REG_DWORD /d "0" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\3" /v "2001" /t REG_DWORD /d "0" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\3" /v "2004" /t REG_DWORD /d "0" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\3" /v "1001" /t REG_DWORD /d "1" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\3" /v "1004" /t REG_DWORD /d "3" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\3" /v "1201" /t REG_DWORD /d "3" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\3" /v "1206" /t REG_DWORD /d "3" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\3" /v "1207" /t REG_DWORD /d "3" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\3" /v "1208" /t REG_DWORD /d "3" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\3" /v "1209" /t REG_DWORD /d "3" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\3" /v "120A" /t REG_DWORD /d "3" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\3" /v "120C" /t REG_DWORD /d "3" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\3" /v "1402" /t REG_DWORD /d "0" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\3" /v "1405" /t REG_DWORD /d "0" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\3" /v "1406" /t REG_DWORD /d "3" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\3" /v "1407" /t REG_DWORD /d "1" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\3" /v "1408" /t REG_DWORD /d "3" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\3" /v "1409" /t REG_DWORD /d "0" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\3" /v "140A" /t REG_DWORD /d "0" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\3" /v "140C" /t REG_DWORD /d "3" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\3" /v "1601" /t REG_DWORD /d "0" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\3" /v "1604" /t REG_DWORD /d "0" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\3" /v "1605" /t REG_DWORD /d "0" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\3" /v "1606" /t REG_DWORD /d "0" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\3" /v "1607" /t REG_DWORD /d "3" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\3" /v "1608" /t REG_DWORD /d "0" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\3" /v "1609" /t REG_DWORD /d "1" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\3" /v "160A" /t REG_DWORD /d "3" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\3" /v "160B" /t REG_DWORD /d "0" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\3" /v "1802" /t REG_DWORD /d "0" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\3" /v "1803" /t REG_DWORD /d "0" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\3" /v "1804" /t REG_DWORD /d "1" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\3" /v "1809" /t REG_DWORD /d "0" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\3" /v "1812" /t REG_DWORD /d "1" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\3" /v "1A00" /t REG_DWORD /d "131072" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\3" /v "1A02" /t REG_DWORD /d "0" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\3" /v "1A03" /t REG_DWORD /d "0" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\3" /v "1A04" /t REG_DWORD /d "3" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\3" /v "1A05" /t REG_DWORD /d "1" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\3" /v "1A06" /t REG_DWORD /d "0" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\3" /v "1A10" /t REG_DWORD /d "1" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\3" /v "1C00" /t REG_DWORD /d "65536" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\3" /v "2000" /t REG_DWORD /d "0" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\3" /v "2005" /t REG_DWORD /d "3" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\3" /v "2007" /t REG_DWORD /d "65536" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\3" /v "2100" /t REG_DWORD /d "0" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\3" /v "2101" /t REG_DWORD /d "0" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\3" /v "2102" /t REG_DWORD /d "3" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\3" /v "2103" /t REG_DWORD /d "3" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\3" /v "2104" /t REG_DWORD /d "3" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\3" /v "2105" /t REG_DWORD /d "3" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\3" /v "2106" /t REG_DWORD /d "0" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\3" /v "2107" /t REG_DWORD /d "3" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\3" /v "2200" /t REG_DWORD /d "3" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\3" /v "2201" /t REG_DWORD /d "3" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\3" /v "2300" /t REG_DWORD /d "1" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\3" /v "2301" /t REG_DWORD /d "0" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\3" /v "2302" /t REG_DWORD /d "3" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\3" /v "2400" /t REG_DWORD /d "3" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\3" /v "2401" /t REG_DWORD /d "0" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\3" /v "2402" /t REG_DWORD /d "3" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\3" /v "2600" /t REG_DWORD /d "0" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\3" /v "2700" /t REG_DWORD /d "0" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\3" /v "2701" /t REG_DWORD /d "0" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\3" /v "2702" /t REG_DWORD /d "0" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\3" /v "2703" /t REG_DWORD /d "3" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\3" /v "2704" /t REG_DWORD /d "0" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\3" /v "2708" /t REG_DWORD /d "3" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\3" /v "2709" /t REG_DWORD /d "3" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\3" /v "270B" /t REG_DWORD /d "3" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\3" /v "270C" /t REG_DWORD /d "0" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\3" /v "270D" /t REG_DWORD /d "3" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\3" /v "140D" /t REG_DWORD /d "0" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\3" /v "2500" /t REG_DWORD /d "0" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\3" /v "2707" /t REG_DWORD /d "0" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\3" /v "120B" /t REG_DWORD /d "3" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4" /ve /t REG_SZ /d "" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4" /v "DisplayName" /t REG_SZ /d "Sitios restringidos" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4" /v "PMDisplayName" /t REG_SZ /d "Restricted sites [Protected Mode]" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4" /v "Description" /t REG_SZ /d "Esta zona contiene sitios web que potencialmente podrían perjudicar el equipo o su información." /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4" /v "Icon" /t REG_SZ /d "inetcpl.cpl#00004481" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4" /v "LowIcon" /t REG_SZ /d "inetcpl.cpl#005426" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4" /v "CurrentLevel" /t REG_DWORD /d "73728" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4" /v "Flags" /t REG_DWORD /d "3" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4" /v "1200" /t REG_DWORD /d "3" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4" /v "1400" /t REG_DWORD /d "3" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4" /v "2001" /t REG_DWORD /d "3" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4" /v "2004" /t REG_DWORD /d "3" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4" /v "1001" /t REG_DWORD /d "3" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4" /v "1004" /t REG_DWORD /d "3" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4" /v "1201" /t REG_DWORD /d "3" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4" /v "1206" /t REG_DWORD /d "3" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4" /v "1207" /t REG_DWORD /d "3" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4" /v "1208" /t REG_DWORD /d "3" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4" /v "1209" /t REG_DWORD /d "3" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4" /v "120A" /t REG_DWORD /d "3" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4" /v "120C" /t REG_DWORD /d "3" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4" /v "1402" /t REG_DWORD /d "3" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4" /v "1405" /t REG_DWORD /d "3" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4" /v "1406" /t REG_DWORD /d "3" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4" /v "1407" /t REG_DWORD /d "3" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4" /v "1408" /t REG_DWORD /d "3" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4" /v "1409" /t REG_DWORD /d "0" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4" /v "140A" /t REG_DWORD /d "0" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4" /v "140C" /t REG_DWORD /d "3" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4" /v "1601" /t REG_DWORD /d "1" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4" /v "1604" /t REG_DWORD /d "3" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4" /v "1605" /t REG_DWORD /d "0" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4" /v "1606" /t REG_DWORD /d "3" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4" /v "1607" /t REG_DWORD /d "3" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4" /v "1608" /t REG_DWORD /d "3" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4" /v "1609" /t REG_DWORD /d "1" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4" /v "160A" /t REG_DWORD /d "3" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4" /v "160B" /t REG_DWORD /d "0" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4" /v "1802" /t REG_DWORD /d "1" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4" /v "1803" /t REG_DWORD /d "3" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4" /v "1804" /t REG_DWORD /d "3" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4" /v "1809" /t REG_DWORD /d "0" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4" /v "180B" /t REG_DWORD /d "1" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4" /v "1812" /t REG_DWORD /d "1" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4" /v "1A00" /t REG_DWORD /d "65536" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4" /v "1A02" /t REG_DWORD /d "3" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4" /v "1A03" /t REG_DWORD /d "3" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4" /v "1A04" /t REG_DWORD /d "3" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4" /v "1A05" /t REG_DWORD /d "3" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4" /v "1A06" /t REG_DWORD /d "3" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4" /v "1A10" /t REG_DWORD /d "3" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4" /v "1C00" /t REG_DWORD /d "0" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4" /v "2000" /t REG_DWORD /d "3" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4" /v "2005" /t REG_DWORD /d "3" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4" /v "2007" /t REG_DWORD /d "3" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4" /v "2100" /t REG_DWORD /d "3" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4" /v "2101" /t REG_DWORD /d "3" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4" /v "2102" /t REG_DWORD /d "3" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4" /v "2103" /t REG_DWORD /d "3" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4" /v "2104" /t REG_DWORD /d "3" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4" /v "2105" /t REG_DWORD /d "3" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4" /v "2106" /t REG_DWORD /d "3" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4" /v "2107" /t REG_DWORD /d "3" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4" /v "2200" /t REG_DWORD /d "3" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4" /v "2201" /t REG_DWORD /d "3" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4" /v "2300" /t REG_DWORD /d "3" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4" /v "2301" /t REG_DWORD /d "0" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4" /v "2302" /t REG_DWORD /d "3" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4" /v "2400" /t REG_DWORD /d "3" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4" /v "2401" /t REG_DWORD /d "3" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4" /v "2402" /t REG_DWORD /d "3" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4" /v "2600" /t REG_DWORD /d "3" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4" /v "2700" /t REG_DWORD /d "0" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4" /v "2701" /t REG_DWORD /d "3" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4" /v "2702" /t REG_DWORD /d "0" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4" /v "2703" /t REG_DWORD /d "3" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4" /v "2704" /t REG_DWORD /d "3" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4" /v "2708" /t REG_DWORD /d "3" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4" /v "2709" /t REG_DWORD /d "3" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4" /v "270B" /t REG_DWORD /d "3" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4" /v "270C" /t REG_DWORD /d "0" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4" /v "270D" /t REG_DWORD /d "3" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4" /v "140D" /t REG_DWORD /d "0" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4" /v "2500" /t REG_DWORD /d "0" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4" /v "2707" /t REG_DWORD /d "0" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4" /v "120B" /t REG_DWORD /d "3" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Internet Explorer\Main" /v "Anchor Underline" /t REG_SZ /d "yes" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Internet Explorer\Main" /v "Cache_Update_Frequency" /t REG_SZ /d "yes" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Internet Explorer\Main" /v "Disable Script Debugger" /t REG_SZ /d "yes" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Internet Explorer\Main" /v "DisableScriptDebuggerIE" /t REG_SZ /d "yes" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Internet Explorer\Main" /v "Display Inline Images" /t REG_SZ /d "yes" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Internet Explorer\Main" /v "Do404Search" /t REG_BINARY /d "01000000" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Internet Explorer\Main" /v "Local Page" /t REG_SZ /d "%%11%%\blank.htm" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Internet Explorer\Main" /v "Save_Session_History_On_Exit" /t REG_SZ /d "no" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Internet Explorer\Main" /v "Search Page" /t REG_SZ /d "http://go.microsoft.com/fwlink/?LinkId=54896" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Internet Explorer\Main" /v "Show_FullURL" /t REG_SZ /d "no" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Internet Explorer\Main" /v "Show_StatusBar" /t REG_SZ /d "yes" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Internet Explorer\Main" /v "Show_ToolBar" /t REG_SZ /d "yes" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Internet Explorer\Main" /v "Show_URLinStatusBar" /t REG_SZ /d "yes" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Internet Explorer\Main" /v "Show_URLToolBar" /t REG_SZ /d "yes" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Internet Explorer\Main" /v "Use_DlgBox_Colors" /t REG_SZ /d "yes" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Internet Explorer\Main" /v "UseClearType" /t REG_SZ /d "no" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Internet Explorer\Main" /v "XMLHTTP" /t REG_DWORD /d "1" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Internet Explorer\Main" /v "Enable Browser Extensions" /t REG_SZ /d "no" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Internet Explorer\Main" /v "Play_Background_Sounds" /t REG_SZ /d "yes" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Internet Explorer\Main" /v "Play_Animations" /t REG_SZ /d "yes" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Internet Explorer\Main" /v "Start Page" /t REG_SZ /d "http://go.microsoft.com/fwlink/p/?LinkId=255141" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Internet Explorer\Main" /v "ImageStoreRandomFolder" /t REG_SZ /d "mgh5het" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Internet Explorer\Main" /v "CompatibilityFlags" /t REG_DWORD /d "0" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Internet Explorer\Main" /v "SearchBandMigrationVersion" /t REG_DWORD /d "1" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Internet Explorer\Main" /v "FullScreen" /t REG_SZ /d "no" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Internet Explorer\Main" /v "Window_Placement" /t REG_BINARY /d "2c0000000200000003000000fffffffffffffffffffffffffffffffffb0700004d000000150c0000dd020000" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Internet Explorer\Main" /v "IE10RunOncePerInstallCompleted" /t REG_DWORD /d "1" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Internet Explorer\Main" /v "IE10RunOnceCompletionTime" /t REG_BINARY /d "ea7bbd516533d801" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Internet Explorer\Main" /v "IE10TourShown" /t REG_DWORD /d "1" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Internet Explorer\Main" /v "IE10TourShownTime" /t REG_BINARY /d "ea7bbd516533d801" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Internet Explorer\Main" /v "DownloadWindowPlacement" /t REG_BINARY /d "2c0000000000000000000000ffffffffffffffffffffffffffffffffd8010000e100000058040000c1020000" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Internet Explorer\Main" /v "IE11EdgeNotifyTime" /t REG_BINARY /d "c8dce73b5e89d701" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Internet Explorer\Main" /v "EdgeReminderRemainingCount" /t REG_DWORD /d "4" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Internet Explorer\Main" /v "Expand Alt Text" /t REG_SZ /d "no" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Internet Explorer\Main" /v "Move System Caret" /t REG_SZ /d "no" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Internet Explorer\Main" /v "PlaySounds" /t REG_DWORD /d "0" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Internet Explorer\Main" /v "NscSingleExpand" /t REG_DWORD /d "0" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Internet Explorer\Main" /v "UseThemes" /t REG_DWORD /d "1" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Internet Explorer\Main" /v "GotoIntranetSiteForSingleWordEntry" /t REG_DWORD /d "0" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Internet Explorer\Main" /v "Friendly http errors" /t REG_SZ /d "yes" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Internet Explorer\Main" /v "Error Dlg Displayed On Every Error" /t REG_SZ /d "no" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Internet Explorer\Main" /v "NotifyDownloadComplete" /t REG_SZ /d "yes" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Internet Explorer\Main" /v "Check_Associations" /t REG_SZ /d "yes" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Internet Explorer\Main" /v "HideNewEdgeButton" /t REG_DWORD /d "1" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Internet Explorer\Main" /v "HideOpenWithEdgeInContextMenu" /t REG_DWORD /d "0" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Internet Explorer\Main" /v "SmoothScroll" /t REG_DWORD /d "1" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Internet Explorer\Main" /v "UseSWRender" /t REG_DWORD /d "0" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Internet Explorer\Main" /v "Enable AutoImageResize" /t REG_SZ /d "yes" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Internet Explorer\Main" /v "EnableAlternativeCodec" /t REG_SZ /d "yes" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Internet Explorer\Main" /v "Show image placeholders" /t REG_DWORD /d "0" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Internet Explorer\Main" /v "MixedContentBlockImages" /t REG_DWORD /d "0" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Internet Explorer\Main" /v "DoNotTrack" /t REG_DWORD /d "0" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Internet Explorer\Main" /v "DOMStorage" /t REG_DWORD /d "1" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Internet Explorer\Main" /v "Isolation" /t REG_SZ /d "PMIL" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Internet Explorer\Main" /v "Isolation64Bit" /t REG_DWORD /d "0" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Internet Explorer\Main" /v "IEAppEolNotificationLastShownTimeStamp" /t REG_BINARY /d "fe6e9b6acd46d901" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Internet Explorer\Main" /v "IE11DefaultsFREConfigUpdateTimestamp" /t REG_BINARY /d "bcbeb192d146d901" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Internet Explorer\Main" /v "IE11DefaultsFRECompletionTime" /t REG_BINARY /d "bcbeb192d146d901" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Internet Explorer\Main" /v "OperationalData" /t REG_QWORD /d "0x0d00000000000000" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_BROWSER_EMULATION" /v "Zoom.exe" /t REG_DWORD /d "11000" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_BROWSER_EMULATION" /v "TeamViewer.exe" /t REG_DWORD /d "11001" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_LOCALMACHINE_LOCKDOWN" /v "iexplore.exe" /t REG_DWORD /d "1" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_LOCALMACHINE_LOCKDOWN\Settings" /v "LOCALMACHINE_CD_UNLOCK" /t REG_DWORD /d "0" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_NINPUT_LEGACYMODE" /v "TeamViewer.exe" /t REG_DWORD /d "0" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Internet Explorer\Main\WindowsSearch" /v "Version" /t REG_SZ /d "10.0.19041.1052" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Internet Explorer\Main\WindowsSearch" /v "User Favorites Path" /t REG_SZ /d "file:///C:\Users\PC\Favorites\\" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Internet Explorer\Main\WindowsSearch" /v "UpgradeTime" /t REG_BINARY /d "ea7bbd516533d801" /f
-            Reg.exe add "HKCU\SOFTWARE\Microsoft\Internet Explorer\Main\WindowsSearch" /v "ConfiguredScopes" /t REG_DWORD /d "5" /f
-        set subRutina=true
-        goto :eof
-
     :update_w7_32
         echo.
         call :formato "UPDATE W7 64 - MODO SILENCIOSO"
@@ -1345,11 +770,20 @@ rem : menu_windows
         goto :eof
     :explorer
         call :formato "explorer.reg"
-        pause
-        start \\193.4.0.180\taller\Bat\"Explorer Full 2.0.reg"
+        rem regedit /s "configuraciones\reg\Explorer Full 2.0.reg"
+        regedit "configuraciones\reg\Explorer Full 2.0.reg"
+        rem start \\193.4.0.180\taller\Bat\"Explorer Full 2.0.reg"
         pause
         set subRutina=true
         goto :eof    
+    
+    :activarCpesos
+        call :formato "Activar C$"
+        regedit /s "configuraciones\reg\Habilitar compartir por red W11.reg"
+        rem regedit "configuraciones\reg\Habilitar compartir por red W11.reg"
+        set subRutina=true
+        pause
+        goto :eof
 
 rem : menu_configuracion
     :uvnc_ini
@@ -1607,11 +1041,10 @@ rem                                                 ############################
         if %op_usuario%==del_temp call :del_temp & goto %actual%
         if %op_usuario%==inicio call :Primer_Inicio & goto %actual%
         if %op_usuario%==andy call :andy & goto %actual%
-        if %op_usuario%==andy call :explorer & goto %actual%
         if %op_usuario%==visorhi call :visorhi & goto %actual%
         if %op_usuario%==visorhi-delete call :visorhidelete & goto %actual%
         if %op_usuario%==visorhi-test call :visorhitest & goto %actual%
-        if %op_usuario%=="explorer full" call :Explorer_Full_2_0 & goto %actual%
+        if %op_usuario%=="explorer full" call :Explorer & goto %actual%
 
 
     rem **********************************************************************************    
@@ -1695,7 +1128,7 @@ rem                                                 ############################
 
     ::set count=0
     for /F %%a in (user2.txt) do (
-        if not "%%a"=="ECHO" (
+        if not "%%a"=="echo" (
             ::set /a count+=1
             echo * - %%a
             )
